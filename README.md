@@ -28,3 +28,7 @@ workshop template for amplify gen2
 - Amplify Sandbox の起動と開発
 - Kiro CLI を使用した AI 支援開発
 - AWS MCP サーバーを活用した Amplify ガイド付きワークフロー
+
+### 3. Hosting ([docs/3\_ホスティング.md](docs/3_hosting.md))
+
+- Amplify Hosting の設定
