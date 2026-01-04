@@ -11,7 +11,6 @@ workshop template for amplify gen2
 - AWS アカウント（Admin 相当の権限）
 - AWS ビルダー ID
 - GitHub アカウント
-- GitHub Codespaces 環境（推奨）
 
 ## ワークショップの内容
 
