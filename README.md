@@ -1,33 +1,73 @@
-# amplify-gen2-workshop
+# React + TypeScript + Vite
 
-workshop template for amplify gen2
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## 概要
+Currently, two official plugins are available:
 
-このワークショップでは、AWS Amplify Gen2 と Kiro CLI を使用して、ログイン機能付きの Todo アプリケーションを構築します。
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-### 前提条件
+## React Compiler
 
-- AWS アカウント（Admin 相当の権限）
-- AWS ビルダー ID
-- GitHub アカウント
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## ワークショップの内容
+## Expanding the ESLint configuration
 
-### 1. 初期設定 ([docs/1\_初期設定.md](docs/1_初期設定.md))
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-- AWS CLI、Node.js、Kiro CLI、UV のインストール
-- AWS アカウントへのログイン
-- Kiro CLI の認証設定
-- GitHub Codespaces での環境構築
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-### 2. Todo アプリ開発 ([docs/2\_アプリ作成.md](docs/2_アプリ作成.md))
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-- Vite + React + TypeScript のセットアップ
-- Amplify Sandbox の起動と開発
-- Kiro CLI を使用した AI 支援開発
-- AWS MCP サーバーを活用した Amplify ガイド付きワークフロー
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
 
-### 3. Hosting ([docs/3\_ホスティング.md](docs/3_ホスティング.md))
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-- Amplify Hosting の設定
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
