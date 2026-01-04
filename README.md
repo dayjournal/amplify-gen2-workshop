@@ -31,3 +31,48 @@ workshop template for amplify gen2
 ### 3. Hosting ([docs/3\_ホスティング.md](docs/3_ホスティング.md))
 
 - Amplify Hosting の設定
+
+## ファイル構成
+
+```
+amplify-gen2-workshop/
+├── .devcontainer/
+│   └── devcontainer.json           # GitHub Codespaces / Dev Container設定
+├── .kiro/
+│   └── settings/
+│       └── mcp.json                # Kiro CLI用 AWS MCPサーバー設定
+├── docs/
+│   ├── 1_初期設定.md                # Step1: 環境セットアップ手順
+│   ├── 2_アプリ作成.md              # Step2: Kiro CLIでTodoアプリ開発
+│   └── 3_ホスティング.md             # Step3: Amplify Hostingデプロイ
+├── todo-app/
+│   ├── amplify/
+│   │   ├── auth/
+│   │   │   └── resource.ts         # Cognito認証設定
+│   │   ├── data/
+│   │   │   └── resource.ts         # AppSync/DynamoDBスキーマ定義
+│   │   ├── backend.ts              # バックエンドエントリーポイント
+│   │   ├── package.json            # Amplifyバックエンド依存関係
+│   │   └── tsconfig.json           # Amplify用TypeScript設定
+│   ├── public/
+│   │   └── vite.svg                
+│   ├── src/
+│   │   ├── assets/
+│   │   │   └── react.svg          
+│   │   ├── App.css                 # Appコンポーネント用CSS
+│   │   ├── App.tsx                 # メインAppコンポーネント
+│   │   ├── index.css               # グローバルCSS
+│   │   └── main.tsx                # Reactエントリーポイント
+│   ├── .gitignore                  
+│   ├── eslint.config.js            
+│   ├── index.html                  # HTMLテンプレート
+│   ├── package-lock.json           
+│   ├── package.json            
+│   ├── tsconfig.app.json           
+│   ├── tsconfig.json               
+│   ├── tsconfig.node.json          
+│   ├── vite.config.ts             
+│   └── README.md                   
+├── LICENSE                         
+└── README.md                       # ワークショップ全体のREADME
+```
